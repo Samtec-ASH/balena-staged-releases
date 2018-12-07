@@ -8,7 +8,9 @@
 
 COMMIT_HASH=$1
 TARGET_TAG_KEY=$2
-source ./resin.env
+
+# Make this be left to user to source to allow different folder
+# source ./resin.env
 
 if [ -z $COMMIT_HASH ]; then
 	RELEASE_ID="null"

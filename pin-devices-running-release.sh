@@ -4,7 +4,8 @@
 
 ./check-configuration.sh || exit 1
 
-source ./resin.env
+# Make this be left to user to source to allow different folder
+# source ./resin.env
 
 COMMIT=$1
 if [ -z $COMMIT ]; then

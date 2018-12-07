@@ -6,7 +6,9 @@
 
 ./check-configuration.sh || exit 1
 
-source ./resin.env
+# Make this be left to user to source to allow different folder
+# source ./resin.env
+
 echo "enabling rolling release tracking for APP == $APP_ID"
 curl -X PATCH "https://api.$BASE_URL/v4/application($APP_ID)" -H "Authorization: Bearer $authToken" -H "Content-Type: application/json" --data-binary '{"should_track_latest_release":true}'
 

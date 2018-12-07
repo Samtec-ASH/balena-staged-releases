@@ -6,7 +6,9 @@
 
 ./check-configuration.sh || exit 1
 
-source ./resin.env
+# Make this be left to user to source to allow different folder
+# source ./resin.env
+
 DEVICE_UUID=$1
 DEVICE_ID=$(./get-device-id.sh $DEVICE_UUID)
 
