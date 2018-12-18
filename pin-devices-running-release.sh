@@ -5,7 +5,7 @@
 ./check-configuration.sh || exit 1
 
 # Make this be left to user to source to allow different folder
-# source ./resin.env
+# source ./balena.env
 
 COMMIT=$1
 if [ -z $COMMIT ]; then
@@ -15,4 +15,4 @@ else
 	RELEASE_ID=$(./get-release-id.sh $COMMIT)
 fi
 echo "setting devices with commit $COMMIT with release = $RELEASE_ID"
-curl -X PATCH "https://api.$BASE_URL/v4/device?\$filter=is_on__commit%20eq%20'$COMMIT'" -H "Authorization: Bearer $authToken" -H "Content-Type: application/json" --data-binary '{"should_be_running__release":'$RELEASE_ID'}'
+curl -X PATCH "https://api.$BASE_URL/v4/device?\$filter=is_on__commit%20eq%20'$COMMIT'" -H "Authorization: Bearer $BALENA_AUTH_TOKEN" -H "Content-Type: application/json" --data-binary '{"should_be_running__release":'$RELEASE_ID'}'

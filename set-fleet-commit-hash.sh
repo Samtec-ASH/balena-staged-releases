@@ -6,8 +6,8 @@
 ./check-configuration.sh || exit 1
 
 # Make this be left to user to source to allow different folder
-# source ./resin.env
+# source ./balena.env
 
 COMMIT_HASH=$1
 echo "setting APP: $APP_ID to COMMIT == $COMMIT_HASH"
-curl -X PATCH "https://api.$BASE_URL/v4/application($APP_ID)" -H "Authorization: Bearer $authToken" -H "Content-Type: application/json" --data-binary '{"commit":"'$COMMIT_HASH'"}'
+curl -X PATCH "https://api.$BASE_URL/v4/application($APP_ID)" -H "Authorization: Bearer $BALENA_AUTH_TOKEN" -H "Content-Type: application/json" --data-binary '{"commit":"'$COMMIT_HASH'"}'

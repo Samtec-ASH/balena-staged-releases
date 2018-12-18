@@ -7,7 +7,7 @@
 ./check-configuration.sh || exit 1
 
 # Make this be left to user to source to allow different folder
-# source ./resin.env
+# source ./balena.env
 
 DEVICE_UUID=$1
 DEVICE_ID=$(./get-device-id.sh $DEVICE_UUID)
@@ -27,4 +27,4 @@ else
 	RELEASE_ID=$(./get-release-id.sh $COMMIT)
 fi
 echo "setting device $DEVICE_ID to commit $COMMIT with release = $RELEASE_ID"
-curl -X PATCH "https://api.$BASE_URL/v4/device($DEVICE_ID)" -H "Authorization: Bearer $authToken" -H "Content-Type: application/json" --data-binary '{"should_be_running__release":'$RELEASE_ID'}'
+curl -X PATCH "https://api.$BASE_URL/v4/device($DEVICE_ID)" -H "Authorization: Bearer $BALENA_AUTH_TOKEN" -H "Content-Type: application/json" --data-binary '{"should_be_running__release":'$RELEASE_ID'}'

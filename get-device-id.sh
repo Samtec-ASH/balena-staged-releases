@@ -7,6 +7,6 @@
 DEVICE_UUID=$1
 
 # Make this be left to user to source to allow different folder
-# source ./resin.env
+# source ./balena.env
 
-curl "https://api.$BASE_URL/v4/device?\$select=id,uuid&\$filter=uuid%20eq%20'$DEVICE_UUID'" -H "Authorization: Bearer $authToken" | jq '.d[0].id'
+curl "https://api.$BASE_URL/v4/device?\$select=id,uuid&\$filter=uuid%20eq%20'$DEVICE_UUID'" -H "Authorization: Bearer $BALENA_AUTH_TOKEN" | jq '.d[0].id'
