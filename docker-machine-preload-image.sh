@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd $DIR
@@ -14,7 +15,9 @@ HOST_BUILD_PATH=$3
 # APP_ID
 # APP_DEVICE_TYPE
 
-MACHINE_NAME="resin-preloader"
+
+BALENA_CLI="v9.12.0"
+MACHINE_NAME="samtec-ash"
 # HOST_BUILD_PATH="$DIR/../images"
 MACHINE_BUILD_PATH="/tmp"
 BALENA_IMG="${APP_NAME}_${APP_COMMIT}.img"
@@ -23,17 +26,17 @@ HOST_BALENA_IMG_PATH="$HOST_BUILD_PATH/$BALENA_IMG"
 
 docker-machine ls | grep -q $MACHINE_NAME
 if [[ $? -ne 0 ]]; then
-  docker-machine create --driver virtualbox --virtualbox-memory 8192 $MACHINE_NAME # --engine-storage-driver aufs
+  docker-machine create --driver virtualbox --virtualbox-memory 8192 --engine-storage-driver aufs $MACHINE_NAME
   echo "Created docker machine $MACHINE_NAME"
 else
   docker-machine start $MACHINE_NAME
   echo "Using existing docker machine $MACHINE_NAME"
 fi
 
-docker-machine ssh $MACHINE_NAME which balena
+docker-machine ssh $MACHINE_NAME "which balena"
 if [[ $? -ne 0 ]]; then
   docker-machine ssh $MACHINE_NAME "tce-load -wi bash && \
-    wget -q https://github.com/balena-io/balena-cli/releases/download/v9.5.0/balena-cli-v9.5.0-linux-x64.zip -O /tmp/balena-cli-linux-x64.zip && \
+    wget -q https://github.com/balena-io/balena-cli/releases/download/$BALENA_CLI/balena-cli-$BALENA_CLI-linux-x64.zip -O /tmp/balena-cli-linux-x64.zip && \
     cd /tmp && \
     unzip balena-cli-linux-x64.zip && \
     sudo chmod +x ./balena-cli/balena && \
