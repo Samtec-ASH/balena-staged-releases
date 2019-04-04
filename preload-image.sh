@@ -31,23 +31,23 @@ APP_IMG_ZIP_PATH="$BUILD_PATH/$APP_IMG_ZIP"
 APP_CONFIG_PATH="$BUILD_PATH/config.json"
 
 # Download Balena OS
-balena os download $APP_DEVICE_TYPE\
-    --output $APP_IMG_PATH\
+balena os download $APP_DEVICE_TYPE \
+    --output $APP_IMG_PATH \
     --version $APP_OS_VERSION
 
 # Load app onto image
-balena preload $APP_IMG_PATH\
-    --app $APP_ID\
-    --commit $APP_COMMIT\
+balena preload $APP_IMG_PATH \
+    --app $APP_ID \
+    --commit $APP_COMMIT \
     --pin-device-to-release
 
 echo "{\"apiKey\": \"$APP_API_KEY\"}" > $APP_CONFIG_PATH
 
 # Load config into app image
 # --deviceApiKey $APP_API_KEY
-balena os configure $APP_IMG_PATH\
-    --app $APP_NAME\
-    --version $APP_OS_VERSION\
+balena os configure $APP_IMG_PATH \
+    --app $APP_NAME \
+    --version $APP_OS_VERSION \
     --config $APP_CONFIG_PATH
  
 zip -j $APP_IMG_ZIP_PATH $APP_IMG_PATH
