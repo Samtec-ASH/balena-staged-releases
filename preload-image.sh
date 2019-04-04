@@ -24,6 +24,7 @@ if [ -z "$APP_OS_VERSION" ]; then echo "Error: APP_OS_VERSION isnt set"; exit 1;
 if [ -z "$S3_BUCKET" ]; then echo "Error: S3_BUCKET isnt set"; exit 1; fi 
 
 BUILD_PATH="/tmp"
+APP_COMMIT_TAG=${APP_COMMIT:0:7}
 APP_IMG="${APP_NAME}_${APP_DEVICE_TYPE}_v${APP_VERSION}_${APP_COMMIT_TAG}.img"
 APP_IMG_ZIP="${APP_NAME}_${APP_DEVICE_TYPE}_v${APP_VERSION}_${APP_COMMIT_TAG}.zip"
 APP_IMG_PATH="$BUILD_PATH/$APP_IMG"
