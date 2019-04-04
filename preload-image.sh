@@ -14,8 +14,8 @@ cd $DIR
 APP_COMMIT=${1:-$APP_COMMIT}
 APP_VERSION=${2:-$APP_VERSION}
 APP_API_KEY=${3:-$APP_API_KEY}
-APP_OS_VERSION=${4:-APP_OS_VERSION}
-S3_BUCKET=${5:-S3_BUCKET}
+APP_OS_VERSION=${4:-$APP_OS_VERSION}
+S3_BUCKET=${5:-$S3_BUCKET}
 
 if [ -z "$APP_COMMIT" ]; then echo "Error: APP_COMMIT isnt set"; exit 1; fi 
 if [ -z "$APP_VERSION" ]; then echo "Error: APP_VERSION isnt set"; exit 1; fi 
