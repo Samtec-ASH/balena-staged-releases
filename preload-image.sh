@@ -31,6 +31,7 @@ APP_IMG_ZIP_PATH="$BUILD_PATH/$APP_IMG_ZIP"
 APP_CONFIG_PATH="$BUILD_PATH/config.json"
 
 # Download Balena OS
+echo "Downloading image version $APP_OS_VERSION for device type $APP_DEVICE_TYPE"
 balena os download $APP_DEVICE_TYPE \
     --output $APP_IMG_PATH \
     --version $APP_OS_VERSION
